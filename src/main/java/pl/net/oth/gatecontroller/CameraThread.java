@@ -13,19 +13,22 @@ import java.nio.file.Paths;
 public class CameraThread implements Runnable{
 	public final static String MAINDIR="/records/camera";
 	private String id;
-	public CameraThread(String id) {
+	private String direction;
+	public CameraThread(String id, String direction) {
 		this.id=id;
+		this.direction=direction;
 	}
 	public void run() {		
 		try {
 			Files.createDirectories(Paths.get(MAINDIR+"//"+id));
 		
-		
+			int MAX_PHOTOS="OUT".equals(direction)?8:3;
 			System.out.println(id+": RUNNING");
-			for(int i=0; i<8; i++) {
+			for(int i=0; i<MAX_PHOTOS; i++) {
 				System.out.println(id+": Taking image "+i);				
 				saveImage("http://10.4.0.80:8765/picture/1/current/", MAINDIR+"//"+id+"//"+i+".jpg");
-				sleep(200);
+				if("IN".equals(direction))
+					sleep(200);
 			}
 			
 			System.out.println(id+": STOP");

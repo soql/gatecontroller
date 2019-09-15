@@ -35,10 +35,11 @@ public class MqttCallback implements org.eclipse.paho.client.mqttv3.MqttCallback
 			LOGGER.info("Odebrano wiadomość MQTT: " + message.toString());
 			String threadId = String.valueOf(new Date().getTime());
 			LOGGER.info("Tworzę wątek " + threadId);
-			new Thread(new CameraThread(threadId)).start();
-
+			
 			GateEvent gateEvent = createFromMqttMessage(message.toString(), threadId);
 			gateEventService.save(gateEvent);
+			new Thread(new CameraThread(gateEvent.getId(), gateEvent.getDirection())).start();
+
 			new Thread(new NotificationThread(gateEvent)).start();
 		} catch (Exception e) {
 			e.printStackTrace();
