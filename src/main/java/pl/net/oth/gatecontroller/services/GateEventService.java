@@ -1,5 +1,7 @@
 package pl.net.oth.gatecontroller.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,10 @@ public class GateEventService {
 	
 	public void save(GateEvent gateEvent) {
 		gateEventRepository.save(gateEvent);
+	}
+
+	public List<GateEvent> getSortedByDate(int number) {
+		return gateEventRepository.getSortedByDate(number);
+		
 	}
 }

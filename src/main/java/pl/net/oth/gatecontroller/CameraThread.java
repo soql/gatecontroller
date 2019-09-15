@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 
 public class CameraThread implements Runnable{
-	public final static String MAINDIR="c://TEMP";
+	public final static String MAINDIR="/records/camera";
 	private String id;
 	public CameraThread(String id) {
 		this.id=id;
@@ -22,9 +22,10 @@ public class CameraThread implements Runnable{
 		
 		
 			System.out.println(id+": RUNNING");
-			for(int i=0; i<5; i++) {
-				System.out.println(id+": Taking image "+i);
-				saveImage("http://10.4.0.80:8765/picture/1/current/", MAINDIR+"//"+id+"//"+i+".jpg");				
+			for(int i=0; i<8; i++) {
+				System.out.println(id+": Taking image "+i);				
+				saveImage("http://10.4.0.80:8765/picture/1/current/", MAINDIR+"//"+id+"//"+i+".jpg");
+				sleep(200);
 			}
 			
 			System.out.println(id+": STOP");
