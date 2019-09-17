@@ -9,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #002c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,6 +23,7 @@
   color: #61dafb;
 }
 
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -31,3 +32,40 @@
     transform: rotate(360deg);
   }
 }
+
+.Collapsible {
+  background-color: #0022aa;
+}
+
+.Collapsible__trigger {
+  display: block;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  border: 1px solid white;
+  padding: 10px;
+  background: cyan;
+  color: white;
+}
+
+  .Collapsible__trigger:after {
+    font-family: 'FontAwesome';
+    content: '\f107';
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: block;
+    transition: transform 300ms;
+  }
+ .Collapsible__trigger.is-closed:after {    
+      transform: rotateZ(0deg);            
+  }
+ .Collapsible__trigger.is-open:after {    
+      transform: rotateZ(180deg);          
+  }
+
+  .is-disabled {
+    opacity: 0.5;
+    background-color: grey;
+  }

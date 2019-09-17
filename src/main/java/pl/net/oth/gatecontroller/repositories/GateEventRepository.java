@@ -12,6 +12,6 @@ import pl.net.oth.gatecontroller.model.GateEvent;
 
 @Repository
 public interface GateEventRepository extends CrudRepository<GateEvent, String>{
-	@Query(nativeQuery = true, value ="SELECT * FROM gate_event ORDER BY TIME ASC LIMIT :number")
+	@Query(nativeQuery = true, value ="SELECT * FROM gate_event ORDER BY ID DESC LIMIT :number")
 	List<GateEvent> getSortedByDate(@Param("number") int number);
 }
