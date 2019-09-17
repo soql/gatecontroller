@@ -8,10 +8,13 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class CameraThread implements Runnable{
 	public final static String MAINDIR="/records/camera";
+	public SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private String id;
 	private String direction;
 	public CameraThread(String id, String direction) {
@@ -25,7 +28,7 @@ public class CameraThread implements Runnable{
 			int MAX_PHOTOS="OUT".equals(direction)?8:3;
 			System.out.println(id+": RUNNING");
 			for(int i=0; i<MAX_PHOTOS; i++) {
-				System.out.println(id+": Taking image "+i);				
+				System.out.println(id+": Taking image nr "+i+" ("+sdf.format(new Date())+")");				
 				saveImage("http://10.4.0.80:8765/picture/1/current/", MAINDIR+"//"+id+"//"+i+".jpg");
 				if("IN".equals(direction))
 					sleep(200);

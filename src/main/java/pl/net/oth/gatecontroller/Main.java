@@ -11,6 +11,7 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -43,22 +44,23 @@ public class Main {
 			e.printStackTrace();
 			CameraThread.sleep(1000);
 			main(args);
-		}
-		System.out.println("ELO");
+		}		
 	}
 
 	public void connect(String address) {
-		try {
-			client = new MqttClient(address, MqttClient.generateClientId());
+		try {			
+			client = new MqttClient(address, MqttClient.generateClientId(), new MqttDefaultFilePersistence(System.getProperty("java.io.tmpdir")));
 			MqttConnectOptions options = new MqttConnectOptions();
+			
 			options.setAutomaticReconnect(true);
 			options.setCleanSession(true);
 			options.setConnectionTimeout(10);
+			
 			client.connect(options);
 			client.subscribe("telemetry/gate", (topic, msg) -> {
 				mqttCallback.messageArrived(topic, msg);
 			});		
-			System.out.println("Client connected");
+			LOGGER.info("Client connected. Tmp folder: "+System.getProperty("java.io.tmpdir"));
 		} catch (Exception e) {		
 			System.out.println("ERROR CALLBACK");
 			e.printStackTrace();
