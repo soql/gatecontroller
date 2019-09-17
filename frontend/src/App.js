@@ -8,7 +8,7 @@ class App extends React.Component {
 		    super(props);
 		    this.state = {
 		    		eventList: [],
-		    		fotos: []
+		    		fotos: {}
 		    };
 		  }
 
@@ -17,12 +17,17 @@ class App extends React.Component {
 	    .then(response => response.json())
 	    .then(data => this.setState({ eventList: data }));
 	  }
-	handleOpen(ide){				
+	handleOpen(ide){	
+		const copyFoto={...this.state.fotos}	
+		if(this.state.fotos[ide])
+			return;
 		fetch('http://localhost:8080/rest/foto?id='+ide)
 		.then(response => response.json())
-	    .then(data => this.setState({
-	    	 	fotos: data
-	    	}));
+	    .then(data => {
+	    	copyFoto[ide]=data;
+	    	this.setState({	    			    
+	    	 	fotos: copyFoto
+	    	})});
 	}
 	render(){		
 		const { events } = this.state;
@@ -31,7 +36,7 @@ class App extends React.Component {
 		<div className="App">
 			  {this.state.eventList.map(event => 			  	    
 			  		<Collapsible trigger={event.direction+" "+event.dateAsString} onOpen={this.handleOpen.bind(this, event.id)}>
-			  		<img src={this.state.fotos && this.state.fotos[0]} />
+			  		<img src={this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][0]} />
 			  		</Collapsible>
 			  	
 			  )}
