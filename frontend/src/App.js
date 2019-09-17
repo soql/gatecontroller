@@ -13,7 +13,7 @@ class App extends React.Component {
 		  }
 
 	componentDidMount() {
-	    fetch('http://localhost:8080/rest/list?number=5')	      
+	    fetch('/rest/list?number=15')	      
 	    .then(response => response.json())
 	    .then(data => this.setState({ eventList: data }));
 	  }
@@ -21,7 +21,7 @@ class App extends React.Component {
 		const copyFoto={...this.state.fotos}	
 		if(this.state.fotos[ide])
 			return;
-		fetch('http://localhost:8080/rest/foto?id='+ide)
+		fetch('/rest/foto?id='+ide)
 		.then(response => response.json())
 	    .then(data => {
 	    	copyFoto[ide]=data;
@@ -37,6 +37,7 @@ class App extends React.Component {
 			  {this.state.eventList.map(event => 			  	    
 			  		<Collapsible trigger={event.direction+" "+event.dateAsString} onOpen={this.handleOpen.bind(this, event.id)}>
 			  		<img src={this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][0]} />
+			  		<img src={this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][1]} />
 			  		</Collapsible>
 			  	
 			  )}
