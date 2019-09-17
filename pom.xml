@@ -89,7 +89,7 @@
 					</execution>
 					<!-- <execution> <id>npm install</id> <goals> <goal>npm</goal> </goals> 
 						<configuration> <arguments>install</arguments> </configuration> </execution> -->
-					<execution>
+					<!--					<execution>
 						<id>npm build</id>
 						<goals>
 							<goal>npm</goal>
@@ -98,10 +98,34 @@
 							<arguments>run
 								build</arguments>
 						</configuration>
+					</execution>-->
+				</executions>
+			</plugin>
+		  	<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>frontend to resources</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/frontend/build</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
+	
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -134,34 +158,9 @@
 						<configuration>
 							<filesets>
 								<fileset>
-									<directory>src/main/resources/static/**</directory>
+									<directory>${project.build.directory}/src/main/resources/static/**</directory>
 								</fileset>
 							</filesets>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		  	<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>copy-resource-one</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-
-						<configuration>
-							<outputDirectory>src/main/resources/static</outputDirectory>
-							<resources>
-								<resource>
-									<directory>/frontend/build</directory>
-									<includes>
-										<include>**/*</include>
-									</includes>
-								</resource>
-							</resources>
 						</configuration>
 					</execution>
 				</executions>
