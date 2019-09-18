@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Collapsible from 'react-collapsible';
+import PinchZoomPan from "react-responsive-pinch-zoom-pan";
 
 class App extends React.Component {
 	 constructor(props) {
@@ -36,8 +37,11 @@ class App extends React.Component {
 		<div className="App">
 			  {this.state.eventList.map(event => 			  	    
 			  		<Collapsible trigger={event.direction+" "+event.dateAsString} onOpen={this.handleOpen.bind(this, event.id)}>
-			  		<img src={this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][0]} />
-			  		<img src={this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][1]} />
+			  		 <div style={{ width: '500px', height: '500px' }}>
+			  		<PinchZoomPan>
+			  			<img src={this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][0]} />
+			  		</PinchZoomPan>		
+			  			 </div>
 			  		</Collapsible>
 			  	
 			  )}
