@@ -1,1 +1,4 @@
 /target/
+/frontend/build/
+/src/main/resources/static/
+/node_modules/
