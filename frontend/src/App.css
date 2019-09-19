@@ -36,7 +36,9 @@
 .Collapsible {
   background-color: #0022aa;
 }
-
+.Collapsible_date{
+  background-color: #dd22cc;
+}
 .Collapsible__trigger {
   display: block;
   font-weight: 400;
@@ -48,7 +50,17 @@
   background: cyan;
   color: white;
 }
-
+.Collapsible_date__trigger {
+  display: block;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  border: 1px solid white;
+  padding: 10px;
+  background: blue;
+  color: white;
+}
   .Collapsible__trigger:after {
     font-family: 'FontAwesome';
     content: '\f107';
@@ -64,8 +76,27 @@
  .Collapsible__trigger.is-open:after {    
       transform: rotateZ(180deg);          
   }
+  
+  .Collapsible_date__trigger:after {
+    font-family: 'FontAwesome';
+    content: '\f107';
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: block;
+    transition: transform 300ms;
+  }
+ .Collapsible_date__trigger.is-closed:after {    
+      transform: rotateZ(0deg);            
+  }
+ .Collapsible_date__trigger.is-open:after {    
+      transform: rotateZ(180deg);          
+  }
 
   .is-disabled {
     opacity: 0.5;
     background-color: grey;
+  }
+  .resizedImage {
+  	max-width: 100%;
   }

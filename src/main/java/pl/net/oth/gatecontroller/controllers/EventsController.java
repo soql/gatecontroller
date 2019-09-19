@@ -8,7 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pl.net.oth.gatecontroller.CameraThread;
 import pl.net.oth.gatecontroller.Main;
+import pl.net.oth.gatecontroller.Utils;
 import pl.net.oth.gatecontroller.model.GateEvent;
 import pl.net.oth.gatecontroller.model.GateEventDAO;
 import pl.net.oth.gatecontroller.services.GateEventService;
@@ -40,9 +45,9 @@ public class EventsController {
 
 	@CrossOrigin
 	@RequestMapping(value = "/rest/list", method = RequestMethod.GET, produces = "application/json")
-	public List<GateEventDAO> index(@RequestParam int number) {
+	public TreeMap<String, List<GateEventDAO>> index(@RequestParam int number) {
 		return gateEventService.getSortedByDate(number).stream().map(element -> new GateEventDAO(element))
-				.collect(Collectors.toList());
+				.collect(Collectors.groupingBy(e -> Utils.getDateFromEvent(e),TreeMap::new, Collectors.toList()));		 
 	}
 
 
