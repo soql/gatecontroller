@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './bootstrap.css';
+import './css/all.css';
 import './App.css';
 
 import Collapsible from 'react-collapsible';
@@ -44,10 +45,7 @@ class App extends React.Component {
 	    	 	fotos: copyFoto
 	    	})});
 	}
-	renderImage(event){
-		this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id].map((element, i) => {
-			console.log("TUTAJ "+i);
-		});
+	renderImage(event){		
 		return (this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][0])?
 			<Carousel interval={null} touch={false}>
 				{this.state.fotos[event.id].map((element, idx) => {return (				
@@ -69,7 +67,7 @@ class App extends React.Component {
 	}
 	generateTitle(event){
 		return (
-				<div className={'eventContainer'}><img className={'car_'+event.direction} src={'car'+(event.revert?"_revert":"")+'.png'}/>{event.dateAsString}</div>)
+				<div className={'eventContainer'}><img className={'car_'+event.direction} src={(event.fast?'human':'car')+((!event.fast && event.revert)?"_revert":"")+'.png'}/>{event.dateAsString}</div>)
 	}
 	render(){		
 		const { events } = this.state;

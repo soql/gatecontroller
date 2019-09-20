@@ -46,7 +46,7 @@ public class EventsController {
 	@CrossOrigin
 	@RequestMapping(value = "/rest/list", method = RequestMethod.GET, produces = "application/json")
 	public TreeMap<String, List<GateEventDAO>> index(@RequestParam int number) {
-		return gateEventService.getSortedByDate(number).stream().map(element -> new GateEventDAO(element))
+		return gateEventService.getSortedByDate(number).stream().filter(element -> Utils.pathExist(element.getId())).map(element -> new GateEventDAO(element))
 				.collect(Collectors.groupingBy(e -> Utils.getDateFromEvent(e),TreeMap::new, Collectors.toList()));		 
 	}
 

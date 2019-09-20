@@ -62,7 +62,8 @@
   color: white;
 }
   .Collapsible__trigger:after {
-    font-family: 'FontAwesome';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
     content: '\f107';
     position: absolute;
     right: 10px;
@@ -78,7 +79,8 @@
   }
   
   .Collapsible_date__trigger:after {
-    font-family: 'FontAwesome';
+     font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
     content: '\f107';
     position: absolute;
     right: 10px;
@@ -107,25 +109,32 @@
   	width:30%;
 	height:30%;
 	margin-right: 30px;
+	margin-left: 0px;
 	 object-fit: contain;	
   }
     .car_out{  
   	width:30%;
 	height:30%;
 	margin-right: 30px;
+	margin-left: 0px;
 	 object-fit: contain;
 	 transform: rotateY(180deg);	
   }
+  
+    
+
   .car_in_revert{  
   	width:7%;
 	height:7%;
 	margin-right: 30px;
+	margin-left: 0px;
 	 object-fit: contain;	
   }
     .car_out_revert{  
   	width:7%;
 	height:7%;
 	margin-right: 30px;
+	margin-left: 0px;
 	 object-fit: contain;
 	 transform: rotateY(180deg);	
   }

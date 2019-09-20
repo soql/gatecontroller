@@ -25,13 +25,13 @@ public class CameraThread implements Runnable{
 		try {
 			Files.createDirectories(Paths.get(MAINDIR+"//"+id));
 		
-			int MAX_PHOTOS="OUT".equals(direction)?8:3;
+			int MAX_PHOTOS="OUT".equals(direction)?3:8;
 			System.out.println(id+": RUNNING");
 			for(int i=0; i<MAX_PHOTOS; i++) {
 				System.out.println(id+": Taking image nr "+i+" ("+sdf.format(new Date())+")");				
 				saveImage("http://10.4.0.80:8765/picture/1/current/", MAINDIR+"//"+id+"//"+i+".jpg");
 				if("IN".equals(direction))
-					sleep(400);
+					sleep(500);
 				else
 					sleep(100);
 			}
