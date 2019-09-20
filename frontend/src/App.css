@@ -34,31 +34,31 @@
 }
 
 .Collapsible {
-  background-color: #0022aa;
+  background-color: #0022aa;  
 }
 .Collapsible_date{
-  background-color: #dd22cc;
+  
 }
 .Collapsible__trigger {
-  display: block;
-  font-weight: 400;
+  display: block; 
+  font-size: x-large;
   text-decoration: none;
-  color: white;
+  color: black;
   position: relative;
-  border: 1px solid white;
+  border: 1px solid black;
   padding: 10px;
-  background: cyan;
-  color: white;
+  background: white;  
 }
 .Collapsible_date__trigger {
   display: block;
   font-weight: 400;
+  font-size: x-large;
   text-decoration: none;
   color: white;
   position: relative;
   border: 1px solid white;
   padding: 10px;
-  background: blue;
+  background-color: #03A9F5;
   color: white;
 }
   .Collapsible__trigger:after {
@@ -99,4 +99,33 @@
   }
   .resizedImage {
   	max-width: 100%;
+  }
+  .eventContainer {
+  	
+  }
+  .car_in{  
+  	width:30%;
+	height:30%;
+	margin-right: 30px;
+	 object-fit: contain;	
+  }
+    .car_out{  
+  	width:30%;
+	height:30%;
+	margin-right: 30px;
+	 object-fit: contain;
+	 transform: rotateY(180deg);	
+  }
+  .car_in_revert{  
+  	width:7%;
+	height:7%;
+	margin-right: 30px;
+	 object-fit: contain;	
+  }
+    .car_out_revert{  
+  	width:7%;
+	height:7%;
+	margin-right: 30px;
+	 object-fit: contain;
+	 transform: rotateY(180deg);	
   }

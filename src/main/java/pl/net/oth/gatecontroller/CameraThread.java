@@ -31,7 +31,9 @@ public class CameraThread implements Runnable{
 				System.out.println(id+": Taking image nr "+i+" ("+sdf.format(new Date())+")");				
 				saveImage("http://10.4.0.80:8765/picture/1/current/", MAINDIR+"//"+id+"//"+i+".jpg");
 				if("IN".equals(direction))
-					sleep(200);
+					sleep(400);
+				else
+					sleep(100);
 			}
 			
 			System.out.println(id+": STOP");

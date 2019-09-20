@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
-import './App.css';
 import './bootstrap.css';
+import './App.css';
+
 import Collapsible from 'react-collapsible';
 import PinchZoomPan from "react-responsive-pinch-zoom-pan";
 import { Button } from 'react-bootstrap';
@@ -48,7 +49,7 @@ class App extends React.Component {
 			console.log("TUTAJ "+i);
 		});
 		return (this.state.fotos && this.state.fotos[event.id] && this.state.fotos[event.id][0])?
-			<Carousel interval={null}>
+			<Carousel interval={null} touch={false}>
 				{this.state.fotos[event.id].map((element, idx) => {return (				
 				<Carousel.Item key={event.id+"_"+idx}>
 					<div>
@@ -66,6 +67,10 @@ class App extends React.Component {
 	      />
 	 		
 	}
+	generateTitle(event){
+		return (
+				<div className={'eventContainer'}><img className={'car_'+event.direction} src={'car'+(event.revert?"_revert":"")+'.png'}/>{event.dateAsString}</div>)
+	}
 	render(){		
 		const { events } = this.state;
 		Object.keys(this.state.eventList).map((date_, i) => {
@@ -76,7 +81,7 @@ class App extends React.Component {
 			  {Object.keys(this.state.eventList).reverse().map((date_, i) => {return (
 				  <Collapsible trigger={date_} classParentString={'Collapsible_date'}>		
 				  	{this.state.eventList[date_].map((event, idx) =>{return (
-				  		<Collapsible key={event.id} trigger={event.direction+" "+event.dateAsString} onOpen={this.handleOpen.bind(this, event.id)}>
+				  		<Collapsible key={event.id} trigger={this.generateTitle(event)} onOpen={this.handleOpen.bind(this, event.id)}>
 				  		<div>
 			  		 		{this.renderImage(event)}	
 			  		 	</div>
@@ -84,7 +89,7 @@ class App extends React.Component {
 				  </Collapsible>)
 			  		
 			  })}
-			  <Button variant="outline-info" onClick={this.getMore.bind(this)}>Pobierz więcej</Button>
+			  <Button variant="outline-info" onClick={this.getMore.bind(this)} style={{width: '100%'}}>Pobierz więcej</Button>
 	    </div>)
 	}
 }

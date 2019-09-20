@@ -5,16 +5,20 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class GateEventDAO {
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 	private String id;
 	private String direction;
+	private boolean revert;
+	private boolean fast;
 	private String dateAsString;
 	private Double speed;
 	private int time;
 	public GateEventDAO(GateEvent gateEvent) {
 		GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Warsaw"));
 		calendar.setTimeInMillis(Long.parseLong(gateEvent.getId()));
-		this.setDirection(gateEvent.getDirection().equals("IN")?"Wjazd":"Wyjazd");
+		this.setDirection(gateEvent.getDirection().toLowerCase());
+		this.setRevert(gateEvent.getRevert());
+		this.setFast(gateEvent.getFast());
 		this.setDateAsString(sdf.format(calendar.getTime()));
 		this.setSpeed(gateEvent.getSpeed());
 		this.setTime(gateEvent.getTime());
@@ -50,6 +54,19 @@ public class GateEventDAO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public boolean isRevert() {
+		return revert;
+	}
+	public void setRevert(boolean revert) {
+		this.revert = revert;
+	}
+	public boolean isFast() {
+		return fast;
+	}
+	public void setFast(boolean fast) {
+		this.fast = fast;
+	}
+	
 	
 	
 	
