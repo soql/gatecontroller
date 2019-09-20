@@ -60,7 +60,7 @@ class App extends React.Component {
 	 		</Carousel>
 	 		:	 		
 	 		 <Loader
-	         type="Bars"
+	         type="Oval"
 	         color="#00BFFF"	       	         
 	      />
 	 		
