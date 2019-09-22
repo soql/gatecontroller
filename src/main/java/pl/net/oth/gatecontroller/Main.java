@@ -55,7 +55,7 @@ public class Main {
 			options.setAutomaticReconnect(true);
 			options.setCleanSession(true);
 			options.setConnectionTimeout(10);
-			
+			options.setKeepAliveInterval(120);
 			client.connect(options);
 			client.subscribe("telemetry/gate", (topic, msg) -> {
 				mqttCallback.messageArrived(topic, msg);
@@ -69,4 +69,9 @@ public class Main {
 		}
 
 	}
+
+	public MqttClient getClient() {
+		return client;
+	}
+	
 }
