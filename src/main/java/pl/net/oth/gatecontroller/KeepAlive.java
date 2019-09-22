@@ -14,7 +14,7 @@ public class KeepAlive {
 	private Main main;
 	public SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedRate = 30000)
 	private void sendToMqtt() {
 		  MqttMessage msg = new MqttMessage();
 	        msg.setQos(0);

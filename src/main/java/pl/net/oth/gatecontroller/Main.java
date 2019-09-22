@@ -17,10 +17,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableJpaRepositories("pl.net.oth.gatecontroller")
 @EnableAutoConfiguration
+@EnableScheduling
 public class Main {
 	private final static Log LOGGER = LogFactory.getLog(Main.class);
 
