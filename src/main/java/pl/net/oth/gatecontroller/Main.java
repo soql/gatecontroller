@@ -26,10 +26,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class Main {
 	private final static Log LOGGER = LogFactory.getLog(Main.class);
 
-	@Autowired
-	private MqttCallback mqttCallback;
+	/*@Autowired
+	private MqttCallback mqttCallback;*/
 
-	private MqttClient client;
+	//private MqttClient client;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
@@ -37,7 +37,7 @@ public class Main {
 
 	public Main(String[] args) {
 		LOGGER.info("Application restarted");
-		String address = args.length > 0 ? args[0] : "tcp://10.4.0.82:1883";
+	/*	String address = args.length > 0 ? args[0] : "tcp://10.4.0.82:1883";
 		try {
 
 			connect(address);		
@@ -46,10 +46,10 @@ public class Main {
 			e.printStackTrace();
 			CameraThread.sleep(1000);
 			main(args);
-		}		
+		}*/		
 	}
 
-	public void connect(String address) {
+/*	public void connect(String address) {
 		try {			
 			client = new MqttClient(address, MqttClient.generateClientId(), new MqttDefaultFilePersistence(System.getProperty("java.io.tmpdir")));
 			MqttConnectOptions options = new MqttConnectOptions();
@@ -70,10 +70,10 @@ public class Main {
 			connect(address);
 		}
 
-	}
+	}*/
 
-	public MqttClient getClient() {
+	/*public MqttClient getClient() {
 		return client;
-	}
+	}*/
 	
 }

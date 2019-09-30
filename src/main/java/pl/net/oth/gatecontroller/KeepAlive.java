@@ -16,7 +16,7 @@ public class KeepAlive {
 	
 	@Scheduled(fixedRate = 30000)
 	private void sendToMqtt() {
-		  MqttMessage msg = new MqttMessage();
+/*		  MqttMessage msg = new MqttMessage();
 	        msg.setQos(0);
 	        msg.setRetained(true);
 	        msg.setPayload(("{'time':'"+sdf.format(new Date())+"'}").getBytes());
@@ -24,6 +24,6 @@ public class KeepAlive {
 			main.getClient().publish("telemetry/gate/keepalive", msg);
 		} catch (MqttException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
