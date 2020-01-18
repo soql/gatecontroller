@@ -28,8 +28,7 @@ public class NotificationThread implements Runnable {
 		if(gateEvent.getDirection().equals("OUT") && gateEvent.getRevert()) {
 			return "wycofanie z wyjazdu";
 		}
-		return null;
-		
+		return null;	
 	}
 
 }
